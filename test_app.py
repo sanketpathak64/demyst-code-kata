@@ -14,16 +14,30 @@ def override_env_variables():
     del os.environ['TODO_LIMIT']
 
 
-def test_get_todos(mocker):
-    todo = {
+def get_todos_list():
+    todo1 = {
         "userId": 1,
-        "id": 2,
+        "id": 1,
         "title": "delectus aut autem",
         "completed": False
     }
-    mock_get_todo = mocker.patch('app.get_todo')
-    mock_get_todo.return_value = todo
+    todo2 = {
+        "userId": 2,
+        "id": 2,
+        "title": "lorem ipsum",
+        "completed": True
+    }
+    return[todo1, todo2]
+
+def test_get_todos(mocker):
+    def mock_get_todo(todo_id):
+        if(todo_id == 1): 
+            return get_todos_list()[0]
+        return get_todos_list()[1]
+
+    mock_get_todo = mocker.patch('app.get_todo', side_effect = mock_get_todo)
+    # mock_get_todo.return_value = todo
 
     res = get_todos()
 
-    assert res == [todo]
+    assert res == [get_todos_list()[1]]

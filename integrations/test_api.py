@@ -6,7 +6,7 @@ import requests_mock
 load_dotenv()
 
 @requests_mock.Mocker(kw="mock")
-def test_get_employee(**kwargs):
+def test_get_todo_returns_todo(**kwargs):
     json = {
         "userId": 1,
         "id": 1,
