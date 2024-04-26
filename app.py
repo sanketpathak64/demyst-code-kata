@@ -1,6 +1,6 @@
 from dotenv import load_dotenv
 import os
-from integerations.api import get_todo
+from integrations.api import get_todo
 load_dotenv()
 
 def get_todos():
@@ -10,6 +10,6 @@ def get_todos():
 
 def display_todos(todos):
     for todo in todos:
-        print(todo['title'], " ", todo['title'], " ", todo['completed'])
+        print(todo['title'], " ", todo['completed'])
 
 display_todos(get_todos())

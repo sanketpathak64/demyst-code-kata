@@ -1,3 +1,5 @@
 pytest
 requests
+requests_mock
+pytest-mock
 python-dotenv
